@@ -19,8 +19,8 @@ function UserEdit() {
   const [toast, setToast] = useState(null);
   const { userId } = useParams();
   const navigate = useNavigate();
-  const userService = useMemo(() => new UserService(), []);
-  const { currentUser, isAuthenticated, logout } = useAuth();
+  const { currentUser, isAuthenticated, logout, token } = useAuth();
+  const userService = useMemo(() => new UserService(() => token), [token]);
   const isAdmin = currentUser?.type === "admin";
   const isSelf = currentUser?.id === userId;
 

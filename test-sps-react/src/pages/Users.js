@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import UserService from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -8,9 +8,8 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const userService = new UserService();
-
-  const { currentUser, isAuthenticated, logout } = useAuth();
+  const { currentUser, isAuthenticated, logout, token } = useAuth();
+  const userService = useMemo(() => new UserService(() => token), [token]);
 
   useEffect(() => {
     if (isAuthenticated && currentUser) {

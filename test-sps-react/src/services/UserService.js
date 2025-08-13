@@ -1,99 +1,40 @@
+import axios from "axios";
+
 class UserService {
-  constructor() {
-    if (!localStorage.getItem('users')) {
-      const defaultUsers = [
-        {
-          id: '1',
-          email: 'admin@sps.com',
-          name: 'Admin User',
-          type: 'admin',
-          password: 'admin123'
-        }
-      ];
-      localStorage.setItem('users', JSON.stringify(defaultUsers));
-    }
+  constructor(getToken) {
+    this.getToken = getToken;
+    this.client = axios.create({
+      baseURL: process.env.REACT_APP_API_URL || "http://localhost:3000",
+    });
+  }
+
+  authHeader() {
+    const token = this.getToken ? this.getToken() : null;
+    return token ? { Authorization: `Bearer ${token}` } : {};
   }
 
   async list() {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    return users;
+    const res = await this.client.get("/users", { headers: this.authHeader() });
+    return res.data;
   }
 
   async get(id) {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(u => u.id === id);
-    return user || null;
+    const res = await this.client.get(`/users/${id}`, { headers: this.authHeader() });
+    return res.data;
   }
 
   async create(data) {
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const existingUser = users.find(u => u.email === data.email);
-    if (existingUser) {
-      throw new Error('Email já cadastrado');
-    }
-
-    const newUser = {
-      id: Date.now().toString(),
-      ...data
-    };
-
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    return newUser;
+    const res = await this.client.post("/users", data, { headers: this.authHeader() });
+    return res.data;
   }
 
   async update(id, data) {
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-
-    const existingUser = users.find(u => u.email === data.email && u.id !== id);
-    if (existingUser) {
-      throw new Error('Email já cadastrado');
-    }
-
-    const userIndex = users.findIndex(u => u.id === id);
-    if (userIndex === -1) {
-      throw new Error('Usuário não encontrado');
-    }
-
-    const updateData = { ...data };
-    if (!updateData.password) {
-      delete updateData.password;
-    }
-
-    users[userIndex] = {
-      ...users[userIndex],
-      ...updateData
-    };
-
-    localStorage.setItem('users', JSON.stringify(users));
-    return users[userIndex];
+    const res = await this.client.put(`/users/${id}`, data, { headers: this.authHeader() });
+    return res.data;
   }
 
   async delete(id) {
-    await new Promise(resolve => setTimeout(resolve, 300));
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const userIndex = users.findIndex(u => u.id === id);
-
-    if (userIndex === -1) {
-      throw new Error('Usuário não encontrado');
-    }
-
-    if (users[userIndex].email === 'admin@sps.com') {
-      throw new Error('Não é possível excluir o usuário administrador');
-    }
-
-    users.splice(userIndex, 1);
-    localStorage.setItem('users', JSON.stringify(users));
-
+    await this.client.delete(`/users/${id}`, { headers: this.authHeader() });
     return true;
   }
 }

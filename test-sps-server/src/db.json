@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@sps.com",
+      "type": "admin",
+      "password": "admin123"
+    }
+  ]
+}

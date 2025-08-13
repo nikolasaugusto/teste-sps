@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
+import { useAuth } from "../contexts/AuthContext";
 import Toast from "../components/Toast";
 
 function UserCreate() {
@@ -12,7 +13,8 @@ function UserCreate() {
   });
   const [toast, setToast] = useState(null);
   const navigate = useNavigate();
-  const userService = new UserService();
+  const { token } = useAuth();
+  const userService = new UserService(() => token);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
