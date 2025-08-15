@@ -5,6 +5,7 @@ import Users from "./pages/Users";
 import UserEdit, { userLoader } from "./pages/UserEdit";
 import UserCreate from "./pages/UserCreate";
 import SignIn from "./pages/SignIn";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,17 +18,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/users",
-    element: <Users />,
+    element: <ProtectedRoute><Users /></ProtectedRoute>,
   },
   {
     path: "/users/create",
-    element: <UserCreate />,
+    element: <ProtectedRoute><UserCreate /></ProtectedRoute>,
   },
   {
     path: "/users/:userId",
-    element: <UserEdit />,
+    element: <ProtectedRoute><UserEdit /></ProtectedRoute>,
     loader: userLoader,
   },
 ]);
+
+
 
 export default router;
