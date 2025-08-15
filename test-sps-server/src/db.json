@@ -3,44 +3,9 @@
     {
       "id": "1",
       "name": "Admin User",
-      "email": "admin@sps.com",
+      "email": "admin@spsgroup.com.br",
       "type": "admin",
-      "password": "admin123"
-    },
-    {
-      "id": "1755094387497-19153",
-      "name": "Rafael",
-      "email": "rafael@hotmail.com",
-      "type": "user",
-      "password": "12345"
-    },
-    {
-      "id": "1755129023024-715858",
-      "name": "Barbara",
-      "email": "barbara@hotmail.com",
-      "type": "user",
-      "password": "12345"
-    },
-    {
-      "id": "1755269220693-719116",
-      "name": "nicolas alquino",
-      "email": "nicolas@hotmail.com",
-      "type": "user",
-      "password": "M@jub@2024"
-    },
-    {
-      "id": "1755269252933-561826",
-      "name": "luiz ",
-      "email": "luiz@hotmail.com",
-      "type": "user",
-      "password": "Batatinha132"
-    },
-    {
-      "id": "1755269294111-200943",
-      "name": "alvaro",
-      "email": "alvaro@hotmail.com",
-      "type": "user",
-      "password": "Batatinh@321"
+      "password": "1234"
     }
   ]
 }
