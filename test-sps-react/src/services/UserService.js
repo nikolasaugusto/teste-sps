@@ -13,8 +13,9 @@ class UserService {
     return token ? { Authorization: `Bearer ${token}` } : {};
   }
 
-  async list() {
-    const res = await this.client.get("/users", { headers: this.authHeader() });
+  async list(page = 1, limit = 5) {
+    const params = { page, limit };
+    const res = await this.client.get("/users", { headers: this.authHeader(), params });
     return res.data;
   }
 

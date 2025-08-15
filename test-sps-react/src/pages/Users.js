@@ -10,20 +10,24 @@ function Users() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("name-asc");
   const [typeFilter, setTypeFilter] = useState("all");
+  const [page, setPage] = useState(1);
+  const limit = 10;
+  const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   const { currentUser, isAuthenticated, logout, token } = useAuth();
   const userService = useMemo(() => new UserService(() => token), [token]);
 
   const fetchUsers = useCallback(async () => {
     try {
-      const usersList = await userService.list();
-      setUsers(usersList);
+      const response = await userService.list(page, limit);
+      setUsers(response.users || []);
+      setTotal(response.total || 0);
     } catch (error) {
       // noop
     } finally {
       setLoading(false);
     }
-  }, [userService]);
+  }, [userService, page]);
 
   useEffect(() => {
     if (isAuthenticated && currentUser) {
@@ -214,6 +218,15 @@ function Users() {
             })}
           </tbody>
         </table>
+      </div>
+      <div className="pagination-controls" style={{ marginTop: "10px", textAlign: "center" }}>
+        <button onClick={() => setPage(p => Math.max(p - 1, 1))} disabled={page <= 1} className="btn btn-secondary" style={{ marginRight: "5px" }}>
+          Anterior
+        </button>
+        <span>Página {page} de {Math.ceil(total / limit) || 1}</span>
+        <button onClick={() => setPage(p => Math.min(p + 1, Math.ceil(total / limit) || 1))} disabled={page >= Math.ceil(total / limit) || total === 0} className="btn btn-secondary" style={{ marginLeft: "5px" }}>
+          Próxima
+        </button>
       </div>
     </div>
   );

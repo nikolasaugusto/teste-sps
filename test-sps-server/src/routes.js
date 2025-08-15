@@ -21,8 +21,14 @@ routes.post("/auth/login-challenge", validateBody(schemas.loginChallenge), handl
 
 // Users CRUD
 routes.get("/users", authMiddleware, (req, res) => {
-  const users = db.getUsers().map(publicUser);
-  return res.json(users);
+  const { page = "1", limit = "5" } = req.query;
+  const pageNum = parseInt(page, 10);
+  const limitNum = parseInt(limit, 10);
+  const allUsers = db.getUsers().map(publicUser);
+  const total = allUsers.length;
+  const start = (pageNum - 1) * limitNum;
+  const paged = allUsers.slice(start, start + limitNum);
+  return res.json({ users: paged, total, page: pageNum, limit: limitNum });
 });
 
 routes.get("/users/:id", authMiddleware, (req, res) => {
