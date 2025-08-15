@@ -14,21 +14,10 @@ const Toast = ({ message, type, onClose }) => {
 
   if (!visible) return null;
 
-  const toastStyle = {
-    position: "fixed",
-    top: "20px",
-    right: "20px",
-    padding: "16px",
-    borderRadius: "4px",
-    color: "white",
-    fontWeight: "bold",
-    zIndex: 1000,
-    boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-    ...(type === "error" ? { backgroundColor: "#e74c3c" } : { backgroundColor: "#2ecc71" }),
-  };
+  const toastClass = `toast ${type === "error" ? "toast-error" : "toast-success"}`;
 
   return (
-    <div style={toastStyle}>
+    <div className={toastClass}>
       {message}
     </div>
   );

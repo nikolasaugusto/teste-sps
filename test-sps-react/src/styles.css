@@ -1,0 +1,969 @@
+/* Layout e containers */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Headers e títulos */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 0;
+}
+
+/* Botões */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #1e7e34;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Container para input de senha com botão de gerar */
+.password-input-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.password-input-container .form-input {
+    flex: 1;
+}
+
+.generate-password-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    min-width: 50px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Filtros */
+.filters-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.filter-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 220px;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.filter-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 180px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.sort-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 260px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+/* Tabelas */
+.table-container {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.table-header {
+    background-color: #f8f9fa;
+    text-align: left;
+}
+
+.table-header th {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.table-header th.actions {
+    text-align: right;
+}
+
+.table-row {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-row:hover {
+    background-color: #f8f9fa;
+}
+
+.table-cell {
+    padding: 12px;
+    word-wrap: break-word;
+    max-width: 200px;
+}
+
+.table-cell.actions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Informações do usuário */
+.user-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* Botões de ação na tabela */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Formulário de edição */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.form-actions-right {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Toast notifications */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.toast-success {
+    background-color: #2ecc71;
+}
+
+.toast-error {
+    background-color: #e74c3c;
+}
+
+/* Estados de loading */
+.loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.redirecting {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Password Strength Meter */
+.password-strength-meter {
+    margin-top: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.strength-bar-container {
+    margin-bottom: 15px;
+}
+
+.strength-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.strength-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+    font-size: 12px;
+    color: #666;
+    font-weight: bold;
+}
+
+.requirements-list h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.requirement-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.check-icon {
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.error-messages,
+.warning-messages {
+    margin-top: 10px;
+}
+
+.error-messages h4,
+.warning-messages h4 {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+}
+
+.error-messages h4 {
+    color: #d32f2f;
+}
+
+.warning-messages h4 {
+    color: #f57c00;
+}
+
+.error-messages ul,
+.warning-messages ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error-item {
+    color: #d32f2f;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.warning-item {
+    color: #f57c00;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Desktop Large (1920px e acima) */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1400px;
+        padding: 30px;
+    }
+
+    .form-container {
+        max-width: 700px;
+        padding: 30px;
+    }
+
+    .login-container {
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .form-input,
+    .form-select {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .table-header th,
+    .table-cell {
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+
+/* Desktop (1200px - 1919px) */
+@media (max-width: 1919px) and (min-width: 1200px) {
+    .container {
+        max-width: 1100px;
+        padding: 25px;
+    }
+
+    .form-container {
+        max-width: 650px;
+        padding: 25px;
+    }
+
+    .login-container {
+        max-width: 450px;
+        padding: 25px;
+    }
+}
+
+/* Tablet Landscape (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .container {
+        max-width: 900px;
+        padding: 20px;
+    }
+
+    .form-container {
+        max-width: 600px;
+        padding: 20px;
+    }
+
+    .login-container {
+        max-width: 400px;
+        padding: 20px;
+    }
+
+    .filters-container {
+        gap: 8px;
+    }
+
+    .filter-input {
+        min-width: 200px;
+    }
+
+    .filter-select {
+        min-width: 160px;
+    }
+
+    .sort-select {
+        min-width: 220px;
+    }
+}
+
+/* Tablet Portrait (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-container {
+        max-width: 550px;
+        padding: 20px;
+    }
+
+    .login-container {
+        max-width: 380px;
+        padding: 20px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .page-header>div {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .filter-input,
+    .filter-select,
+    .sort-select {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-actions-right {
+        justify-content: space-between;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+
+    .toast {
+        right: 15px;
+        left: 15px;
+        max-width: none;
+    }
+}
+
+/* Mobile Large (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-container {
+        max-width: 500px;
+        padding: 15px;
+        margin: 10px auto;
+    }
+
+    .login-container {
+        max-width: 350px;
+        padding: 15px;
+        margin: 30px auto;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .page-header>div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .filter-input,
+    .filter-select,
+    .sort-select {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .table-container {
+        margin-top: 15px;
+    }
+
+    .table {
+        min-width: 500px;
+    }
+
+    .table-header th,
+    .table-cell {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-actions-right {
+        justify-content: space-between;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .form-input,
+    .form-select {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .toast {
+        right: 10px;
+        left: 10px;
+        top: 10px;
+        max-width: none;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .password-input-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .generate-password-btn {
+        width: 100%;
+        height: 38px;
+    }
+}
+
+/* Mobile (414px - 575px) */
+@media (max-width: 575px) and (min-width: 414px) {
+    .container {
+        padding: 8px;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 12px;
+        margin: 5px auto;
+    }
+
+    .login-container {
+        max-width: 100%;
+        padding: 12px;
+        margin: 20px auto;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+        margin-bottom: 15px;
+    }
+
+    .page-header>div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 8px;
+        margin-top: 15px;
+    }
+
+    .filter-input,
+    .filter-select,
+    .sort-select {
+        min-width: auto;
+        width: 100%;
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .table-container {
+        margin-top: 10px;
+    }
+
+    .table {
+        min-width: 400px;
+        font-size: 12px;
+    }
+
+    .table-header th,
+    .table-cell {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .table-cell {
+        max-width: 120px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .form-actions-right {
+        justify-content: space-between;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .form-input,
+    .form-select {
+        padding: 6px;
+        font-size: 11px;
+    }
+
+    .form-label {
+        font-size: 12px;
+    }
+
+    .toast {
+        right: 8px;
+        left: 8px;
+        top: 8px;
+        max-width: none;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .password-input-container {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .generate-password-btn {
+        width: 100%;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .user-info {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .password-strength-meter {
+        padding: 10px;
+    }
+
+    .requirements-list h4 {
+        font-size: 12px;
+    }
+
+    .requirement-item {
+        font-size: 11px;
+    }
+}
+
+/* Mobile Small (até 413px) */
+@media (max-width: 413px) {
+    .container {
+        padding: 5px;
+    }
+
+    .form-container {
+        max-width: 100%;
+        padding: 10px;
+        margin: 5px auto;
+    }
+
+    .login-container {
+        max-width: 100%;
+        padding: 10px;
+        margin: 15px auto;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 6px;
+        align-items: stretch;
+        margin-bottom: 12px;
+    }
+
+    .page-header>div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        padding: 6px;
+        margin-top: 12px;
+    }
+
+    .filter-input,
+    .filter-select,
+    .sort-select {
+        min-width: auto;
+        width: 100%;
+        padding: 5px;
+        font-size: 11px;
+    }
+
+    .table-container {
+        margin-top: 8px;
+    }
+
+    .table {
+        min-width: 350px;
+        font-size: 11px;
+    }
+
+    .table-header th,
+    .table-cell {
+        padding: 4px;
+        font-size: 11px;
+    }
+
+    .table-cell {
+        max-width: 100px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .form-actions-right {
+        justify-content: space-between;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+
+    .btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .form-input,
+    .form-select {
+        padding: 6px;
+        font-size: 11px;
+    }
+
+    .form-label {
+        font-size: 11px;
+    }
+
+    .toast {
+        right: 5px;
+        left: 5px;
+        top: 5px;
+        max-width: none;
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .password-input-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .generate-password-btn {
+        width: 100%;
+        height: 32px;
+        font-size: 12px;
+    }
+
+    .user-info {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .password-strength-meter {
+        padding: 8px;
+    }
+
+    .requirements-list h4 {
+        font-size: 11px;
+    }
+
+    .requirement-item {
+        font-size: 10px;
+    }
+
+    .error-item,
+    .warning-item {
+        font-size: 10px;
+    }
+}

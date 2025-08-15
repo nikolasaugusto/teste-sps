@@ -34,36 +34,27 @@ export const AuthProvider = ({ children }) => {
   const api = useMemo(() => axios.create({ baseURL: process.env.REACT_APP_API_URL || "http://localhost:3000" }), []);
 
   const login = async ({ email, password }) => {
-    // Privacy-preserving challenge-response
-    try {
-      const ch = await api.get("/auth/challenge", { params: { email } });
-      const nonce = ch.data?.nonce;
-      if (!nonce) throw new Error("Challenge inválido");
-      const encoder = new TextEncoder();
-      const key = await window.crypto.subtle.importKey(
-        "raw",
-        encoder.encode(String(password)),
-        { name: "HMAC", hash: "SHA-256" },
-        false,
-        ["sign"]
-      );
-      const signature = await window.crypto.subtle.sign("HMAC", key, encoder.encode(String(nonce)));
-      const proof = Array.from(new Uint8Array(signature)).map(b => b.toString(16).padStart(2, "0")).join("");
-      const res = await api.post("/auth/login-challenge", { email, proof });
-      setCurrentUser(res.data.user);
-      setToken(res.data.token);
-      localStorage.setItem("authToken", res.data.token);
-      localStorage.setItem("currentUser", JSON.stringify(res.data.user));
-      return res.data.user;
-    } catch (e) {
-      // Fallback to direct login if challenge flow is not supported by server
-      const res = await api.post("/auth/login", { email, password });
-      setCurrentUser(res.data.user);
-      setToken(res.data.token);
-      localStorage.setItem("authToken", res.data.token);
-      localStorage.setItem("currentUser", JSON.stringify(res.data.user));
-      return res.data.user;
-    }
+    const ch = await api.get("/auth/challenge", { params: { email } });
+    const nonce = ch.data?.nonce;
+    if (!nonce) throw new Error("Challenge inválido");
+
+    const encoder = new TextEncoder();
+    const key = await window.crypto.subtle.importKey(
+      "raw",
+      encoder.encode(String(password)),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"]
+    );
+    const signature = await window.crypto.subtle.sign("HMAC", key, encoder.encode(String(nonce)));
+    const proof = Array.from(new Uint8Array(signature)).map(b => b.toString(16).padStart(2, "0")).join("");
+
+    const res = await api.post("/auth/login-challenge", { email, proof });
+    setCurrentUser(res.data.user);
+    setToken(res.data.token);
+    localStorage.setItem("authToken", res.data.token);
+    localStorage.setItem("currentUser", JSON.stringify(res.data.user));
+    return res.data.user;
   };
 
   const logout = () => {

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import { useAuth } from "../contexts/AuthContext";
 import Toast from "../components/Toast";
+import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
+import { validatePassword, generateStrongPassword } from "../utils/passwordValidation";
 
 function UserCreate() {
   const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ function UserCreate() {
     type: "user",
     password: ""
   });
+  const [showPasswordMeter, setShowPasswordMeter] = useState(false);
   const [toast, setToast] = useState(null);
   const navigate = useNavigate();
   const { token } = useAuth();
@@ -22,10 +25,36 @@ function UserCreate() {
       ...prev,
       [name]: value
     }));
+
+    // Mostrar o medidor de força da senha quando o usuário começar a digitar
+    if (name === 'password' && value.length > 0) {
+      setShowPasswordMeter(true);
+    } else if (name === 'password' && value.length === 0) {
+      setShowPasswordMeter(false);
+    }
+  };
+
+  const handleGeneratePassword = () => {
+    const strongPassword = generateStrongPassword();
+    setFormData(prev => ({
+      ...prev,
+      password: strongPassword
+    }));
+    setShowPasswordMeter(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar senha antes de enviar
+    const passwordValidation = validatePassword(formData.password);
+    if (!passwordValidation.isValid) {
+      setToast({
+        message: `Erro na validação da senha: ${passwordValidation.errors.join(', ')}`,
+        type: "error"
+      });
+      return;
+    }
 
     try {
       await userService.create(formData);
@@ -44,12 +73,12 @@ function UserCreate() {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "20px auto", padding: "20px" }}>
-      <h2 style={{ textAlign: "center" }}>Cadastrar Novo Usuário</h2>
+    <div className="form-container">
+      <h2 className="page-title">Cadastrar Novo Usuário</h2>
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="name" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="name" className="form-label">
             Nome:
           </label>
           <input
@@ -58,18 +87,13 @@ function UserCreate() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
+            className="form-input"
             required
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="email" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
             Email:
           </label>
           <input
@@ -78,18 +102,13 @@ function UserCreate() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
+            className="form-input"
             required
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="type" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="type" className="form-label">
             Tipo:
           </label>
           <select
@@ -97,64 +116,54 @@ function UserCreate() {
             name="type"
             value={formData.type}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
+            className="form-select"
           >
             <option value="user">Usuário</option>
             <option value="admin">Administrador</option>
           </select>
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">
             Senha:
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
-            required
-          />
+          <div className="password-input-container">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-input"
+              required
+            />
+            <button
+              type="button"
+              onClick={handleGeneratePassword}
+              className="btn btn-secondary generate-password-btn"
+              title="Gerar senha forte"
+            >
+              🔐
+            </button>
+          </div>
+
+          {showPasswordMeter && (
+            <PasswordStrengthMeter password={formData.password} />
+          )}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="form-actions">
           <button
             type="button"
             onClick={() => navigate("/users")}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+            className="btn btn-secondary"
           >
             Voltar
           </button>
 
           <button
             type="submit"
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+            className="btn btn-primary"
           >
             Cadastrar
           </button>

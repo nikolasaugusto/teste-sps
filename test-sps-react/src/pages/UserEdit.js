@@ -134,16 +134,16 @@ function UserEdit() {
   };
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <div className="loading">Carregando...</div>;
   }
 
   return (
-    <div style={{ maxWidth: "600px", margin: "20px auto", padding: "20px" }}>
-      <h2 style={{ textAlign: "center" }}>Editar Usuário</h2>
+    <div className="form-container">
+      <h2 className="page-title">Editar Usuário</h2>
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="name" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="name" className="form-label">
             Nome:
           </label>
           <input
@@ -152,18 +152,13 @@ function UserEdit() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
+            className="form-input"
             required
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="email" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
             Email:
           </label>
           <input
@@ -172,19 +167,14 @@ function UserEdit() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
+            className="form-input"
             required
           />
         </div>
 
         {isAdmin ? (
-          <div style={{ marginBottom: "15px" }}>
-            <label htmlFor="type" style={{ display: "block", marginBottom: "5px" }}>
+          <div className="form-group">
+            <label htmlFor="type" className="form-label">
               Tipo:
             </label>
             <select
@@ -192,26 +182,21 @@ function UserEdit() {
               name="type"
               value={formData.type}
               onChange={handleChange}
-              style={{
-                width: "100%",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-              }}
+              className="form-select"
             >
               <option value="user">Usuário</option>
               <option value="admin">Administrador</option>
             </select>
           </div>
         ) : (
-          <div style={{ marginBottom: "15px" }}>
-            <label style={{ display: "block", marginBottom: "5px" }}>Tipo:</label>
+          <div className="form-group">
+            <label className="form-label">Tipo:</label>
             <div>{formData.type}</div>
           </div>
         )}
 
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password" style={{ display: "block", marginBottom: "5px" }}>
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">
             Senha (deixe em branco para manter a atual):
           </label>
           <input
@@ -220,46 +205,26 @@ function UserEdit() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
+            className="form-input"
             placeholder="Deixe em branco para manter a senha atual"
           />
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
+        <div className="form-actions">
           <button
             type="button"
             onClick={() => navigate("/users")}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+            className="btn btn-secondary"
           >
             Voltar
           </button>
 
-          <div>
+          <div className="form-actions-right">
             {(isAdmin || isSelf) && formData.email !== 'admin@sps.com' && (
               <button
                 type="button"
                 onClick={handleDelete}
-                style={{
-                  padding: "10px 20px",
-                  backgroundColor: "#dc3545",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
+                className="btn btn-danger"
               >
                 Excluir
               </button>
@@ -267,14 +232,7 @@ function UserEdit() {
 
             <button
               type="submit"
-              style={{
-                padding: "10px 20px",
-                backgroundColor: "#007bff",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
+              className="btn btn-primary"
             >
               Salvar
             </button>

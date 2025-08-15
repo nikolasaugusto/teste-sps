@@ -6,6 +6,20 @@
       "email": "admin@sps.com",
       "type": "admin",
       "password": "admin123"
+    },
+    {
+      "id": "1755094387497-19153",
+      "name": "Rafael",
+      "email": "rafael@hotmail.com",
+      "type": "user",
+      "password": "12345"
+    },
+    {
+      "id": "1755129023024-715858",
+      "name": "Barbara",
+      "email": "barbara@hotmail.com",
+      "type": "user",
+      "password": "12345"
     }
   ]
 }
